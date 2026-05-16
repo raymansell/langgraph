@@ -6,7 +6,7 @@ from langchain_core.tools import StructuredTool
 from langchain_tavily import TavilySearch
 from langgraph.prebuilt import ToolNode
 
-from schemas import AnswerQuestion, ReviseAnswer
+from schemas import QuestionAnswer, ReviseAnswer
 
 tavily_tool = TavilySearch(max_results=5)
 
@@ -17,7 +17,7 @@ def run_queries(search_queries: list[str], **kwargs):
 
 execute_tools = ToolNode(
     [
-        StructuredTool.from_function(run_queries, name=AnswerQuestion.__name__),
+        StructuredTool.from_function(run_queries, name=QuestionAnswer.__name__),
         StructuredTool.from_function(run_queries, name=ReviseAnswer.__name__),
     ]
 )
